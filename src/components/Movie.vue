@@ -6,9 +6,18 @@
         class="movie-img">
         <div>
             <div class="movie-name">
-                {{ movie.orginal_title }} ({{ movie.release_date }})
+                {{ movie.original_title }} ({{ movie.relase_date }})
             </div>
             <span class="movie-overview">{{ movie.overview }}</span>
+            <div class="movie-buttons">
+                <button class="btn movie-buttons-watched">
+                    <span v-if="!movie.isWatched">Watched</span>
+                    <span v-else>unwatched</span>
+                </button>
+                <button class="btn movie-buttons-delete">
+                    Delete
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -24,6 +33,20 @@ const props = defineProps({
 </script>
 
 <style>
+.movie-buttons {
+    margin-top: 20px;
+}
+
+.movie-buttons .movie-buttons-watched {
+    color: #fff;
+    background-color: rgb(55, 55, 214);
+}
+
+.movie-buttons .movie-buttons-delete {
+    color: #fff;
+    background-color: rgb(232, 39, 39);
+}
+
 .movie {
     display: flex;
     grid-template-columns: 200px 1fr;
@@ -39,6 +62,14 @@ const props = defineProps({
 }
 
 .movie-img {
-    max-width: 200px;
+    object-fit: cover;
+    width: 200px;
+    height: 250px;
+}
+
+.movie-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 </style>
